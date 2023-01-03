@@ -3,6 +3,7 @@
 pragma solidity >=0.5.0;
 
 import '../interfaces/ICannabisSwapPair.sol';
+import '../interfaces/ICannabisSwapFactory.sol';
 
 import './SafeMath.sol';
 
@@ -16,26 +17,11 @@ library CannabisSwapLibrary {
     require(token0 != address(0), 'CannabisSwapLibrary: ZERO_ADDRESS');
   }
 
-  // calculates the CREATE2 address for a pair without making any external calls
-  function pairFor(
-    address factory,
-    address tokenA,
-    address tokenB
-  ) internal pure returns (address pair) {
-    (address token0, address token1) = sortTokens(tokenA, tokenB);
-    pair = address(
-      uint256(
-        keccak256(
-          abi.encodePacked(
-            hex'ff',
-            factory,
-            keccak256(abi.encodePacked(token0, token1)),
-            hex'cd6a28e0fe6ae4076fb8d7f83446ef563dd9055816a8556c5c0ee39af4050a4c' // init code hash
-          )
-        )
-      )
-    );
-  }
+  // calculates the CREATE2 address for a pair
+      function pairFor(address factory, address tokenA, address tokenB) internal view returns (address pair) {
+        pair = ICannabisSwapFactory(factory).getPair(tokenA,tokenB);
+    }
+
 
   // fetches and sorts the reserves for a pair
   function getReserves(

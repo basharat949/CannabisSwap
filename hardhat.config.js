@@ -56,11 +56,6 @@ module.exports = {
 defaultNetwork: "hardhat",
         networks: {
             hardhat: {},
-            rinkeby: {
-               url: API_URL,
-               accounts: [process.env.PRIVATE_KEY],
-               gasPrice: 100000000000,
-             },
              bsctestnet: {
                url: "https://data-seed-prebsc-1-s3.binance.org:8545",
                chainId: 97,
