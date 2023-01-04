@@ -60,13 +60,13 @@ defaultNetwork: "hardhat",
                url: "https://data-seed-prebsc-1-s3.binance.org:8545",
                chainId: 97,
                accounts: [process.env.PRIVATE_KEY],
-               gasPrice: 100000000000,
+              //  gasPrice: 100000000000,
              },
              bscmainnet: {
               url: "https://bsc-dataseed.binance.org/",
               chainId: 56,
               accounts: [process.env.PRIVATE_KEY],
-              gasPrice: 100000000000,
+              // gasPrice: 100000000000,
             }
         },
         etherscan: {
